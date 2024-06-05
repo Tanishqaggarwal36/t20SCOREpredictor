@@ -15,7 +15,7 @@ x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=1)
 trf=ColumnTransformer([("trf",OneHotEncoder(sparse_output=False,drop="first",handle_unknown="ignore"),['batting_team','bowling_team','city'])],remainder="passthrough")
 x_train.drop(columns='Unnamed: 0',axis=1,inplace=True)
 x_train=trf.fit_transform(x_train)
-pipe=Pipeline(steps=[("step1",StandardScaler()),("step2",RandomForestRegressor(n_estimators=1000,max_depth=40
+pipe=Pipeline(steps=[("step1",StandardScaler()),("step2",RandomForestRegressor(n_estimators=10,max_depth=22
                                                                                ,random_state=1))])
 pipe.fit(x_train,y_train)
 venue=df["city"].unique().tolist()
